@@ -26,7 +26,7 @@ if calculator_type.lower() == "investment":
         money_receive = money_invested * (1 + (interest_rate/100) * number_of_years)
         print(f"The amount you will receive after {number_of_years} years is R {money_receive} ")
     elif interest.lower() == "compound":
-        money_receive = money_invested * math.pow((1 + interest_rate),number_of_years)
+        money_receive = money_invested * (math.pow((1 + interest_rate),number_of_years))
         print(f"The amount you will receive after {number_of_years} years is R {money_receive} ")
     else:
         print("That is not a valid interest option!")
