@@ -10,6 +10,15 @@ def calculate_roi(initial_investment, final_value):
     roi = ((final_value - initial_investment) / initial_investment) * 100
     return roi
 
+# Function to calculate bond repayment
+def calculate_bond_repayment(present_value, interest_rate, number_of_months):
+    """
+    Calculate bond repayment.
+    """
+    monthly_interest_rate = (interest_rate / 100) / 12
+    repayment = (monthly_interest_rate * present_value) / (1 - (1 + monthly_interest_rate) ** (-number_of_months))
+    return round(repayment, 2)
+
 # this program will allow the user to choose between two different financial calculators: investment and home loan repayment calculator 
 # enter the first output that the user sees
 print("investment - to calculate the amount of interest you'll earn on your investment")
@@ -62,13 +71,9 @@ if calculator_type.lower() == "investment":
 elif calculator_type.lower() == "bond":
     present_value = int(input("Enter the present value of the house?: "))
     interest_rate = float(input("Enter the interest rate?: "))
-    monthly_interest_rate = ( interest_rate / 100 ) / 12
     number_of_months = int(input("Enter the number of months you plan to repay the bond?: "))
     
-    repayment = (monthly_interest_rate * present_value)/(1 - (1 + monthly_interest_rate)**(-number_of_months))
-    
-    # lets round the answer 2 decimal places 
-    rounded_repayment = round(repayment, 2)
+    repayment = calculate_bond_repayment(present_value, interest_rate, number_of_months)
     
     # printing the monthly repayment amount
-    print(f"You will have a monthly repayment of R{rounded_repayment} per month")
+    print(f"You will have a monthly repayment of R{repayment} per month")
